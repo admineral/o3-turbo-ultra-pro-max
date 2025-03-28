@@ -7,7 +7,7 @@
   An Open-Source AI Chatbot Template Built With Next.js and the AI SDK by Vercel.
 </p>
 
-<p align="center">
+<p align="center">kk
   <a href="#features"><strong>Features</strong></a> ·
   <a href="#model-providers"><strong>Model Providers</strong></a> ·
   <a href="#deploy-your-own"><strong>Deploy Your Own</strong></a> ·
