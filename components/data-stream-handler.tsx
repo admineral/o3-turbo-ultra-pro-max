@@ -1,3 +1,22 @@
+/**
+ * ** DATA STREAM HANDLER COMPONENT **
+ * 
+ * This component manages real-time data streams for chat interactions.
+ * 
+ * Key functionalities:
+ * - Establishes and maintains WebSocket connections for streaming data
+ * - Handles document and artifact updates in real-time
+ * - Manages suggestions and other dynamic content streams
+ * - Updates UI state based on streaming events
+ * - Provides error handling for connection issues
+ * - Ensures synchronized state across components
+ * - Implements reconnection logic for dropped connections
+ * 
+ * This component works behind the scenes to enable real-time updates
+ * and collaborative features without requiring page refreshes,
+ * creating a seamless and responsive user experience.
+ */
+
 'use client';
 
 import { useChat } from '@ai-sdk/react';

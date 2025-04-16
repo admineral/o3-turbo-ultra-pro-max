@@ -1,3 +1,22 @@
+/**
+ * ** GET WEATHER TOOL **
+ * 
+ * This module implements the AI tool for retrieving weather data.
+ * 
+ * Key functionalities:
+ * - Provides interface for AI to access weather information
+ * - Handles parameter validation through Zod schema
+ * - Fetches real-time weather data from Open-Meteo API
+ * - Returns comprehensive weather forecast information
+ * - Includes current conditions, hourly forecasts, and daily data
+ * - Supports global coverage through latitude/longitude coordinates
+ * - Integrates with the Weather component for visualization
+ * 
+ * This AI tool enhances conversations by enabling the assistant
+ * to provide accurate, real-time weather information when relevant
+ * to user queries or discussion topics.
+ */
+
 import { tool } from 'ai';
 import { z } from 'zod';
 

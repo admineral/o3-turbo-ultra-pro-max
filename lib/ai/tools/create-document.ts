@@ -1,3 +1,22 @@
+/**
+ * ** CREATE DOCUMENT TOOL **
+ * 
+ * This module implements the AI tool for document creation.
+ * 
+ * Key functionalities:
+ * - Provides interface for AI to create new documents
+ * - Handles parameter validation through Zod schema
+ * - Routes creation requests to appropriate document handlers
+ * - Streams document creation progress to client
+ * - Generates unique IDs for new documents
+ * - Manages document type selection based on AI directive
+ * - Coordinates document creation with user session context
+ * 
+ * This AI tool empowers the assistant to create various document types
+ * directly from conversation, initiating the artifact creation process
+ * based on user requests and conversation context.
+ */
+
 import { generateUUID } from '@/lib/utils';
 import { DataStreamWriter, tool } from 'ai';
 import { z } from 'zod';

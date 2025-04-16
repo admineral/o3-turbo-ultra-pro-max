@@ -1,3 +1,22 @@
+/**
+ * ** VISIBILITY SELECTOR COMPONENT **
+ * 
+ * This component provides controls for managing chat visibility settings.
+ * 
+ * Key functionalities:
+ * - Toggles between private and public chat visibility modes
+ * - Updates visibility settings through server actions
+ * - Provides visual indicators for current visibility state
+ * - Implements tooltips explaining visibility implications
+ * - Handles errors during visibility updates
+ * - Disables controls during loading states
+ * - Enforces access control for visibility changes
+ * 
+ * This component allows users to control who can access their chat conversations,
+ * enabling private chats for personal use or public sharing with others
+ * through shareable links and permissions.
+ */
+
 'use client';
 
 import { ReactNode, useMemo, useState } from 'react';

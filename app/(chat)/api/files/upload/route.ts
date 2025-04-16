@@ -1,3 +1,13 @@
+/**
+ * *** FILES UPLOAD API ***
+ * Handles file uploads for the application:
+ * - POST: Accepts and validates files (JPEG/PNG under 5MB)
+ * 
+ * Uses Vercel Blob for storage with public access.
+ * Validates files using Zod schema and returns
+ * appropriate error messages for invalid files.
+ */
+
 import { put } from '@vercel/blob';
 import { NextResponse } from 'next/server';
 import { z } from 'zod';

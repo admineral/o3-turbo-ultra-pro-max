@@ -1,3 +1,22 @@
+/**
+ * ** UPDATE DOCUMENT TOOL **
+ * 
+ * This module implements the AI tool for document updates.
+ * 
+ * Key functionalities:
+ * - Provides interface for AI to modify existing documents
+ * - Handles parameter validation through Zod schema
+ * - Routes update requests to appropriate document handlers
+ * - Streams document update progress to client
+ * - Retrieves existing document content from database
+ * - Processes natural language update descriptions
+ * - Maintains document versioning with each update
+ * 
+ * This AI tool enables the assistant to modify existing artifacts
+ * based on user requests, allowing for iterative document improvement
+ * and refinement directly from conversation.
+ */
+
 import { DataStreamWriter, tool } from 'ai';
 import { Session } from 'next-auth';
 import { z } from 'zod';

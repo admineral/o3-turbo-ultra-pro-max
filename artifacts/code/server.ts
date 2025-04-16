@@ -1,3 +1,22 @@
+/**
+ * ** CODE ARTIFACT SERVER **
+ * 
+ * This module implements server-side functionality for code artifacts.
+ * 
+ * Key functionalities:
+ * - Handles code document creation with AI generation
+ * - Processes document updates based on user descriptions
+ * - Integrates with AI providers for code generation
+ * - Streams generated code to the client in real-time
+ * - Handles validation and parsing of generated content
+ * - Uses AI prompts specific to code generation
+ * - Registers the code document handler with the artifact system
+ * 
+ * This server-side handler enables AI-powered code generation
+ * and modification, working in tandem with the client-side
+ * rendering and execution functionality.
+ */
+
 import { z } from 'zod';
 import { streamObject } from 'ai';
 import { myProvider } from '@/lib/ai/providers';

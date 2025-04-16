@@ -1,3 +1,22 @@
+/**
+ * ** MODEL SELECTOR COMPONENT **
+ * 
+ * This component provides a dropdown interface for selecting AI models.
+ * 
+ * Key functionalities:
+ * - Displays available AI models with descriptive labels
+ * - Handles model selection and preference saving
+ * - Preserves selected model across sessions using cookies
+ * - Provides visual indicators for currently selected model
+ * - Implements keyboard navigation for accessibility
+ * - Updates chat interface based on selected model capabilities
+ * - Triggers server action to save user preferences
+ * 
+ * This component allows users to customize their AI experience by
+ * choosing different models with varying capabilities, strengths,
+ * and optimization targets for different types of interactions.
+ */
+
 'use client';
 
 import { startTransition, useMemo, useOptimistic, useState } from 'react';

@@ -1,3 +1,21 @@
+/**
+ * ** SUBMIT BUTTON COMPONENT **
+ * 
+ * This component provides an enhanced submit button with state feedback.
+ * 
+ * Key functionalities:
+ * - Displays appropriate visual state (idle, loading, success)
+ * - Shows loading spinner during form submission
+ * - Provides success animation on completion
+ * - Prevents multiple submissions during processing
+ * - Maintains consistent styling with application design
+ * - Supports custom children for flexible labeling
+ * - Enhances user feedback during form interactions
+ * 
+ * This component improves form submission UX by providing
+ * clear visual feedback about the current submission state.
+ */
+
 'use client';
 
 import { useFormStatus } from 'react-dom';

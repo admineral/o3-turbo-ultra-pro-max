@@ -1,3 +1,21 @@
+/**
+ * ** MAIN CHAT PAGE **
+ * 
+ * This component serves as the entry point for the chat application.
+ * 
+ * Key functionalities:
+ * - Generates a unique ID for new chat conversations
+ * - Retrieves user preferences for AI models from cookies
+ * - Initializes empty chat sessions with appropriate configuration
+ * - Sets default visibility to private for new conversations
+ * - Renders the Chat component with proper initial state
+ * - Integrates DataStreamHandler for real-time updates
+ * 
+ * This page creates fresh chat sessions when users start a new conversation,
+ * ensuring proper initialization with either default or previously selected models.
+ * It provides a clean slate for users to begin interacting with the AI.
+ */
+
 import { cookies } from 'next/headers';
 
 import { Chat } from '@/components/chat';

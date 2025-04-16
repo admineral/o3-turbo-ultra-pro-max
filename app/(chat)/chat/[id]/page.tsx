@@ -1,3 +1,21 @@
+/**
+ * ** CHAT ID PAGE **
+ * 
+ * This component renders an individual chat conversation by its ID.
+ * 
+ * Key functionalities:
+ * - Fetches the specific chat and its messages from the database
+ * - Handles authentication and authorization checks
+ * - Converts database messages to UI-compatible format
+ * - Controls visibility based on chat permissions
+ * - Reads the selected chat model from cookies
+ * - Renders the Chat component with proper initialization
+ * - Integrates the DataStreamHandler for real-time updates
+ * 
+ * The page enforces access control by checking chat visibility and user ownership.
+ * It also handles message format conversion to ensure compatibility with the UI components.
+ */
+
 import { cookies } from 'next/headers';
 import { notFound } from 'next/navigation';
 

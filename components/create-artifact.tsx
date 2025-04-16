@@ -1,3 +1,22 @@
+/**
+ * ** CREATE ARTIFACT COMPONENT **
+ * 
+ * This component facilitates the creation of new artifacts (documents, code, etc.).
+ * 
+ * Key functionalities:
+ * - Provides a UI for initiating artifact creation
+ * - Supports multiple artifact types (text, code, sheet, image)
+ * - Offers specialized creation tools based on artifact type
+ * - Handles artifact initialization with proper metadata
+ * - Integrates with the global artifact context
+ * - Provides visual feedback during creation process
+ * - Ensures consistent artifact creation workflow
+ * 
+ * This component serves as the entry point for creating new content
+ * artifacts within the chat interface, enabling AI-assisted content
+ * generation and collaboration.
+ */
+
 import { Suggestion } from '@/lib/db/schema';
 import { UseChatHelpers } from '@ai-sdk/react';
 import { ComponentType, Dispatch, ReactNode, SetStateAction } from 'react';

@@ -1,3 +1,14 @@
+/**
+ * *** DOCUMENT API ***
+ * Manages document operations:
+ * - GET: Retrieves documents by ID for authorized users
+ * - POST: Creates or updates documents with content, title, and type
+ * - PATCH: Deletes document versions after a specified timestamp
+ * 
+ * Enforces user authentication and authorization to ensure documents
+ * are only accessible by their owners.
+ */
+
 import { auth } from '@/app/(auth)/auth';
 import { ArtifactKind } from '@/components/artifact';
 import {

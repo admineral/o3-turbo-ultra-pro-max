@@ -1,3 +1,22 @@
+/**
+ * ** REQUEST SUGGESTIONS TOOL **
+ * 
+ * This module implements the AI tool for generating document improvement suggestions.
+ * 
+ * Key functionalities:
+ * - Provides interface for AI to create document suggestions
+ * - Handles parameter validation through Zod schema
+ * - Generates contextual improvement suggestions for text
+ * - Streams suggestion data to the client in real-time
+ * - Persists suggestions to database for later access
+ * - Formats suggestions with original and improved text
+ * - Includes explanations for suggested changes
+ * 
+ * This AI tool enhances document editing by providing intelligent
+ * improvement suggestions that users can review, accept, or ignore,
+ * creating a collaborative editing experience with AI assistance.
+ */
+
 import { z } from 'zod';
 import { Session } from 'next-auth';
 import { DataStreamWriter, streamObject, tool } from 'ai';

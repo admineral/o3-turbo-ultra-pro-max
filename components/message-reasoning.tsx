@@ -1,3 +1,22 @@
+/**
+ * ** MESSAGE REASONING COMPONENT **
+ * 
+ * This component displays the AI's reasoning process for generating responses.
+ * 
+ * Key functionalities:
+ * - Renders the step-by-step thinking behind AI responses
+ * - Provides collapsible interface for viewing reasoning details
+ * - Formats reasoning content for better readability
+ * - Handles both text and structured reasoning data
+ * - Implements smooth transitions for expand/collapse actions
+ * - Enhances transparency in AI decision-making
+ * - Adapts to different types of reasoning information
+ * 
+ * This component improves user trust and understanding by exposing
+ * the AI's internal reasoning process, making the system more transparent
+ * and helping users better understand how responses are generated.
+ */
+
 'use client';
 
 import { useState } from 'react';

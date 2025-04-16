@@ -1,3 +1,22 @@
+/**
+ * ** ARTIFACT MESSAGES COMPONENT **
+ * 
+ * This component displays conversation messages in the artifact sidebar.
+ * 
+ * Key functionalities:
+ * - Renders chat messages related to the current artifact
+ * - Handles automatic scrolling to the latest message
+ * - Displays message loading indicators during generation
+ * - Optimizes rendering performance with memoization
+ * - Shows voting information for messages
+ * - Adapts to streaming state updates
+ * - Provides appropriate context for message display
+ * 
+ * This component enables users to view the chat conversation
+ * that led to artifact creation within the artifact sidebar,
+ * maintaining context between chat and document views.
+ */
+
 import { PreviewMessage } from './message';
 import { useScrollToBottom } from './use-scroll-to-bottom';
 import { Vote } from '@/lib/db/schema';

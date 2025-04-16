@@ -1,3 +1,22 @@
+/**
+ * ** SIDEBAR HISTORY COMPONENT **
+ * 
+ * This component displays and manages chat history in the sidebar.
+ * 
+ * Key functionalities:
+ * - Fetches and displays user's chat conversation history
+ * - Provides search functionality for finding past conversations
+ * - Implements chat deletion with confirmation
+ * - Groups chats by date for better organization
+ * - Shows loading states during data fetching
+ * - Handles empty states when no chats exist
+ * - Provides navigation between existing conversations
+ * 
+ * This component serves as the user's hub for accessing past conversations,
+ * enabling them to quickly find, resume, or manage their chat history
+ * from anywhere in the application.
+ */
+
 'use client';
 
 import { isToday, isYesterday, subMonths, subWeeks } from 'date-fns';

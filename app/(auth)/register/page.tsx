@@ -1,3 +1,22 @@
+/**
+ * ** REGISTRATION PAGE **
+ * 
+ * This component provides the user interface for account creation.
+ * 
+ * Key functionalities:
+ * - Renders the registration form using shared AuthForm component
+ * - Handles form submission through server actions
+ * - Manages registration state and provides user feedback
+ * - Validates input data and displays appropriate error messages
+ * - Checks for existing accounts to prevent duplicates
+ * - Redirects users after successful registration
+ * - Provides navigation to login page for existing users
+ * 
+ * The component leverages client-side state management with
+ * server-side actions for secure user creation and authentication.
+ * Toast notifications inform users about registration status.
+ */
+
 'use client';
 
 import Link from 'next/link';

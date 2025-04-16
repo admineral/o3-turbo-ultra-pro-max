@@ -1,3 +1,21 @@
+/**
+ * ** SIDEBAR USER NAVIGATION COMPONENT **
+ * 
+ * This component displays user information and navigation options in the sidebar.
+ * 
+ * Key functionalities:
+ * - Shows user profile information (name, email, avatar)
+ * - Provides access to user-specific settings and actions
+ * - Implements theme switching (light/dark mode)
+ * - Includes sign-out functionality for authenticated users
+ * - Adapts displayed information based on authentication state
+ * - Offers dropdown menu for additional user actions
+ * - Maintains consistent styling with application design
+ * 
+ * This component serves as the user control center within the sidebar,
+ * providing access to personalization options and account management.
+ */
+
 'use client';
 import { ChevronUp } from 'lucide-react';
 import Image from 'next/image';

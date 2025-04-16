@@ -1,3 +1,21 @@
+/**
+ * ** CHAT COMPONENT **
+ * 
+ * This component serves as the main chat interface for the application.
+ * 
+ * Key functionalities:
+ * - Manages chat conversations and message display
+ * - Integrates with AI SDK for message streaming and processing
+ * - Handles user input through the multimodal input component
+ * - Coordinates state between messages, model selection, and visibility
+ * - Provides context for document creation and management
+ * - Supports chat visibility toggling (private/public)
+ * - Handles readonly mode for shared conversations
+ * 
+ * This component acts as the orchestrator for the chat experience,
+ * combining multiple sub-components to create the complete chat interface.
+ */
+
 'use client';
 
 import type { Attachment, UIMessage } from 'ai';

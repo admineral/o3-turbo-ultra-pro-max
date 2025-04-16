@@ -1,3 +1,22 @@
+/**
+ * ** WEATHER COMPONENT **
+ * 
+ * This component displays weather information retrieved from external APIs.
+ * 
+ * Key functionalities:
+ * - Renders current weather conditions and forecasts
+ * - Displays temperature, humidity, wind speed, and other metrics
+ * - Provides visual representations with weather icons
+ * - Supports different units of measurement (metric/imperial)
+ * - Handles loading and error states gracefully
+ * - Formats data for optimal readability
+ * - Adapts display based on available weather data
+ * 
+ * This component serves as a specialized display for weather information
+ * retrieved through AI assistant tools, enhancing responses with
+ * visual weather data presentation.
+ */
+
 'use client';
 
 import cx from 'classnames';

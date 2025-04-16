@@ -1,3 +1,22 @@
+/**
+ * ** TEXT ARTIFACT SERVER **
+ * 
+ * This module implements server-side functionality for text artifacts.
+ * 
+ * Key functionalities:
+ * - Handles text document generation using AI models
+ * - Processes document creation with rich text content
+ * - Integrates with AI providers for text generation
+ * - Streams generated text to the client word by word
+ * - Updates existing documents based on user descriptions
+ * - Uses specialized prompts for different text contexts
+ * - Registers the text document handler with the artifact system
+ * 
+ * This server-side handler enables AI-powered text generation,
+ * working in tandem with the client-side rendering functionality
+ * to provide seamless document creation capabilities with smooth streaming.
+ */
+
 import { smoothStream, streamText } from 'ai';
 import { myProvider } from '@/lib/ai/providers';
 import { createDocumentHandler } from '@/lib/artifacts/server';

@@ -1,3 +1,21 @@
+/**
+ * ** LOGIN PAGE **
+ * 
+ * This component provides the user interface for authentication.
+ * 
+ * Key functionalities:
+ * - Renders the login form using shared AuthForm component
+ * - Handles form submission through server actions
+ * - Manages authentication state and user feedback
+ * - Displays error messages for invalid credentials
+ * - Redirects users after successful login
+ * - Provides navigation to registration page
+ * 
+ * The component uses client-side React hooks for state management
+ * combined with server actions for secure credential processing.
+ * Toast notifications provide user feedback on login attempts.
+ */
+
 'use client';
 
 import Link from 'next/link';
@@ -36,9 +54,9 @@ export default function Page() {
       });
     } else if (state.status === 'success') {
       setIsSuccessful(true);
-      router.refresh();
+      router.push('/');
     }
-  }, [state.status]);
+  }, [state.status, router]);
 
   const handleSubmit = (formData: FormData) => {
     setEmail(formData.get('email') as string);

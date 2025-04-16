@@ -1,3 +1,22 @@
+/**
+ * ** DOCUMENT SKELETON COMPONENT **
+ * 
+ * This component provides loading placeholder skeletons for documents and artifacts.
+ * 
+ * Key functionalities:
+ * - Renders type-specific loading skeletons for different artifact kinds
+ * - Creates pulse animation effects for visual feedback during loading
+ * - Provides specialized layout for image artifacts vs text-based content
+ * - Implements consistent styling with the application design
+ * - Offers both full-page and inline skeleton variants
+ * - Maintains proper sizing to prevent layout shifts during loading
+ * - Creates a seamless loading experience for artifact content
+ * 
+ * This component enhances user experience by providing visual feedback
+ * during content loading, reducing perceived latency and maintaining
+ * interface stability while artifacts are being generated or fetched.
+ */
+
 'use client';
 
 import { ArtifactKind } from './artifact';

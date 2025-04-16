@@ -1,3 +1,22 @@
+/**
+ * ** CHAT HEADER COMPONENT **
+ * 
+ * This component provides the header navigation for chat interfaces.
+ * 
+ * Key functionalities:
+ * - Displays the current chat title and model information
+ * - Provides model selection dropdown for changing AI models
+ * - Includes visibility controls for chat privacy settings
+ * - Adapts to different screen sizes with responsive design
+ * - Handles readonly mode for shared conversations
+ * - Provides navigation back to the chat list
+ * - Includes actions for sharing or managing the current chat
+ * 
+ * This component serves as the primary navigation and control bar
+ * at the top of chat interfaces, giving users easy access to
+ * important settings and information about the current conversation.
+ */
+
 'use client';
 
 import Link from 'next/link';

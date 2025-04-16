@@ -1,3 +1,22 @@
+/**
+ * ** SIDEBAR GLOBAL CONTEXT **
+ * 
+ * This component provides global state management for the application sidebar.
+ * 
+ * Key functionalities:
+ * - Manages sidebar visibility state (expanded/collapsed)
+ * - Provides responsive behavior for desktop and mobile devices
+ * - Persists sidebar state with cookies across sessions
+ * - Implements keyboard shortcuts for toggling visibility (Ctrl/Cmd+B)
+ * - Offers multiple collapsible modes (offcanvas, icon, none)
+ * - Adapts to different variants (sidebar, floating, inset)
+ * - Supports positioning on either side of the screen
+ * 
+ * This global context makes sidebar state and controls available
+ * throughout the application via the useSidebar hook, eliminating
+ * the need for prop drilling and ensuring consistent behavior.
+ */
+
 'use client';
 
 import * as React from 'react';

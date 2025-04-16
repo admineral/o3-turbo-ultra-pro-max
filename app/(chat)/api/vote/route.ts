@@ -1,3 +1,13 @@
+/**
+ * *** VOTE API ***
+ * Handles user feedback on chat messages:
+ * - GET: Retrieves all votes for a specific chat
+ * - PATCH: Records upvotes or downvotes on specific messages
+ * 
+ * Ensures only chat owners can access or modify vote data,
+ * providing a mechanism for users to rate AI responses.
+ */
+
 import { auth } from '@/app/(auth)/auth';
 import { getChatById, getVotesByChatId, voteMessage } from '@/lib/db/queries';
 

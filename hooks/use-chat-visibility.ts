@@ -1,3 +1,22 @@
+/**
+ * ** CHAT VISIBILITY GLOBAL CONTEXT HOOK **
+ * 
+ * This hook provides global state management for chat visibility settings.
+ * 
+ * Key functionalities:
+ * - Manages visibility state (private/public) for chat conversations
+ * - Synchronizes local state with server using SWR cache
+ * - Provides optimistic UI updates for visibility changes
+ * - Handles server-side persistence through server actions
+ * - Updates chat history cache to reflect visibility changes
+ * - Maintains consistent visibility state across components
+ * - Falls back to initial visibility when server data is unavailable
+ * 
+ * This hook enables components throughout the application to access and
+ * modify chat visibility without prop drilling, while ensuring data
+ * consistency between client and server states.
+ */
+
 'use client';
 
 import { updateChatVisibility } from '@/app/(chat)/actions';

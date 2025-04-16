@@ -1,3 +1,19 @@
+/**
+ * ** CHAT SERVER ACTIONS **
+ * 
+ * This file contains server-side actions for chat functionality using Next.js server actions.
+ * 
+ * Key functionalities:
+ * - saveChatModelAsCookie: Stores user's preferred chat model in cookies
+ * - generateTitleFromUserMessage: Creates a descriptive title for new chats based on first message
+ * - deleteTrailingMessages: Removes messages after a specified message (for regeneration)
+ * - updateChatVisibility: Changes chat visibility settings (private/public)
+ * 
+ * These actions separate server-side operations from client components,
+ * enabling secure data manipulation without exposing sensitive operations to the client.
+ * The 'use server' directive ensures these functions only execute on the server.
+ */
+
 'use server';
 
 import { generateText, Message } from 'ai';
@@ -21,6 +37,9 @@ export async function generateTitleFromUserMessage({
 }: {
   message: Message;
 }) {
+  if (process.env.NODE_ENV === 'development') {
+    return 'New Chat';
+  }
   const { text: title } = await generateText({
     model: myProvider.languageModel('title-model'),
     system: `\n

@@ -1,3 +1,22 @@
+/**
+ * ** TOOLBAR COMPONENT **
+ * 
+ * This component provides command and formatting controls for artifact editing.
+ * 
+ * Key functionalities:
+ * - Offers quick actions for text and content generation
+ * - Provides formatting controls based on artifact type
+ * - Implements expandable/collapsible interface for space efficiency
+ * - Offers specialized toolsets for different artifact kinds (text, code, sheet)
+ * - Provides visual feedback for command execution
+ * - Sends structured prompts to the AI for specific content generation
+ * - Handles loading states during AI generation
+ * 
+ * This component enhances the artifact editing experience by providing
+ * contextual tools and AI-assisted content generation capabilities,
+ * allowing users to more efficiently create and modify content.
+ */
+
 'use client';
 
 import type { Message } from 'ai';

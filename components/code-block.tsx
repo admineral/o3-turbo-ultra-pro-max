@@ -1,4 +1,25 @@
+/**
+ * ** CODE BLOCK COMPONENT **
+ * 
+ * This component renders code snippets with syntax highlighting.
+ * 
+ * Key functionalities:
+ * - Displays code with proper syntax highlighting
+ * - Provides language detection and formatting
+ * - Implements copy-to-clipboard functionality
+ * - Shows line numbers for better readability
+ * - Formats code according to the detected language
+ * - Adapts styling to match the current theme
+ * - Handles various code formats and languages
+ * 
+ * This component enhances code readability in markdown content
+ * and throughout the application, ensuring consistent and
+ * visually appealing presentation of code snippets.
+ */
+
 'use client';
+
+import { CopyIcon } from './icons';
 
 interface CodeBlockProps {
   node: any;

@@ -1,3 +1,21 @@
+/**
+ * ** DOCUMENT PREVIEW COMPONENT **
+ * 
+ * This component provides a compact preview of artifacts in the chat interface.
+ * 
+ * Key functionalities:
+ * - Renders different artifact types (text, code, image, sheet) in a preview format
+ * - Provides interactive expansion capabilities with hitbox detection
+ * - Fetches document content from the API based on document ID
+ * - Handles loading states with appropriate skeleton placeholders
+ * - Integrates with the global artifact context to manage state
+ * - Displays document headers with title and type information
+ * - Adapts preview content based on document type
+ * 
+ * This component enables artifact previews directly within the chat message flow,
+ * allowing users to interact with generated content while maintaining conversation context.
+ */
+
 'use client';
 
 import {

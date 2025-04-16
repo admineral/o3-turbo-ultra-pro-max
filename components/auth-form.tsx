@@ -1,3 +1,25 @@
+/**
+ * ** AUTH FORM COMPONENT **
+ * 
+ * This component provides a reusable authentication form for login and registration.
+ * 
+ * Key functionalities:
+ * - Renders form fields for email and password
+ * - Handles form submission through provided action handlers
+ * - Supports preserving email input between form submissions
+ * - Implements password visibility toggling
+ * - Provides slots for custom submit buttons and additional content
+ * - Maintains consistent styling across auth interfaces
+ * - Ensures proper validation and feedback patterns
+ * 
+ * This component is used by both login and registration pages,
+ * providing a consistent user experience while allowing for
+ * customization through component composition.
+ */
+
+'use client';
+
+import { useState } from 'react';
 import Form from 'next/form';
 
 import { Input } from './ui/input';

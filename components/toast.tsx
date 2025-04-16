@@ -1,3 +1,22 @@
+/**
+ * ** TOAST COMPONENT **
+ * 
+ * This component provides application-wide notification system.
+ * 
+ * Key functionalities:
+ * - Displays temporary notifications for user feedback
+ * - Supports different notification types (success, error, info)
+ * - Manages notification timing and dismissal behavior
+ * - Provides consistent styling and positioning for all notifications
+ * - Implements stacking behavior for multiple notifications
+ * - Ensures accessibility with proper ARIA attributes
+ * - Offers programmatic API for triggering notifications
+ * 
+ * This utility component enables a consistent notification experience
+ * throughout the application, helping to provide user feedback for
+ * actions, errors, and important events without interrupting workflow.
+ */
+
 'use client';
 
 import React, { ReactNode } from 'react';

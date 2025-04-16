@@ -1,3 +1,21 @@
+/**
+ * ** APP SIDEBAR COMPONENT **
+ * 
+ * This component provides the main navigation sidebar for the application.
+ * 
+ * Key functionalities:
+ * - Displays chat history and allows navigation between conversations
+ * - Shows user authentication state and profile information
+ * - Provides access to application settings and theme options
+ * - Includes sign-out functionality for authenticated users
+ * - Supports sidebar collapsing for maximizing content space
+ * - Renders application branding and version information
+ * - Adapts to different screen sizes with responsive design
+ * 
+ * This component serves as the primary navigation hub for the application,
+ * providing context and controls that persist across different chat conversations.
+ */
+
 'use client';
 
 import type { User } from 'next-auth';

@@ -1,9 +1,10 @@
 import 'server-only';
 
-import { genSaltSync, hashSync } from 'bcrypt-ts';
+import { genSaltSync, hashSync, compare } from 'bcrypt-ts';
 import { and, asc, desc, eq, gt, gte, inArray } from 'drizzle-orm';
 import { drizzle } from 'drizzle-orm/postgres-js';
 import postgres from 'postgres';
+import { v4 as uuidv4 } from 'uuid';
 
 import {
   user,
@@ -18,17 +19,176 @@ import {
 } from './schema';
 import { ArtifactKind } from '@/components/artifact';
 
-// Optionally, if not using email/pass login, you can
-// use the Drizzle adapter for Auth.js / NextAuth
-// https://authjs.dev/reference/adapter/drizzle
+// Initialize database connection
+let db: ReturnType<typeof drizzle>;
 
-// biome-ignore lint: Forbidden non-null assertion.
-const client = postgres(process.env.POSTGRES_URL!);
-const db = drizzle(client);
+if (process.env.NODE_ENV === 'development') {
+  // In development, use mock database
+  const mockData = {
+    users: [] as Array<{ id: string; email: string; password: string }>,
+    chats: [] as Array<{ id: string; userId: string; title: string; createdAt: Date; visibility: string }>,
+    messages: [] as Array<DBMessage>,
+    votes: [] as Array<{ chatId: string; messageId: string; isUpvoted: boolean }>,
+  };
 
+  // Create a default user for development
+  const defaultUser = {
+    id: 'dev-user-id',
+    email: 'dev@example.com',
+    password: hashSync('password', genSaltSync(10)),
+  };
+  mockData.users.push(defaultUser);
+
+  const mockDb = {
+    select: () => ({
+      from: (table: string) => ({
+        where: (condition: any) => {
+          let results: any[] = [];
+          if (table === 'User') {
+            const email = condition?.email?.value;
+            const user = mockData.users.find(u => u.email === email);
+            if (user) {
+              results = [{
+                id: user.id,
+                email: user.email,
+                password: user.password
+              }];
+            }
+          } else if (table === 'Chat') {
+            if (condition?.id?.value) {
+              const chatId = condition.id.value;
+              results = mockData.chats.filter(chat => chat.id === chatId);
+            } else if (condition?.userId?.value) {
+              const userId = condition.userId.value;
+              results = mockData.chats.filter(chat => chat.userId === userId);
+            } else {
+              results = mockData.chats;
+            }
+          } else if (table === 'Message_v2') {
+            if (condition?.chatId?.value) {
+              const chatId = condition.chatId.value;
+              results = mockData.messages.filter(msg => msg.chatId === chatId);
+            } else if (condition?.id?.value) {
+              const messageId = condition.id.value;
+              results = mockData.messages.filter(msg => msg.id === messageId);
+            } else {
+              results = mockData.messages;
+            }
+          } else if (table === 'Vote_v2') {
+            if (condition?.chatId?.value) {
+              const chatId = condition.chatId.value;
+              results = mockData.votes.filter(vote => vote.chatId === chatId);
+            } else if (condition?.messageId?.value) {
+              const messageId = condition.messageId.value;
+              results = mockData.votes.filter(vote => vote.messageId === messageId);
+            } else {
+              results = mockData.votes;
+            }
+          }
+          return {
+            orderBy: (order: any) => {
+              if (order?.createdAt?.direction === 'desc') {
+                results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+              } else if (order?.createdAt?.direction === 'asc') {
+                results.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+              }
+              return Promise.resolve(results);
+            },
+            then: (resolve: any) => resolve(results)
+          };
+        }
+      })
+    }),
+    insert: (table: string) => ({
+      values: (data: any) => {
+        if (table === 'User') {
+          const user = { 
+            id: uuidv4(), 
+            email: data.email,
+            password: hashSync(data.password, genSaltSync(10))
+          };
+          mockData.users.push(user);
+          return Promise.resolve(user);
+        }
+        if (table === 'Chat') {
+          const chat = { 
+            id: uuidv4(), 
+            createdAt: new Date(),
+            visibility: 'private',
+            ...data 
+          };
+          mockData.chats.push(chat);
+          return Promise.resolve(chat);
+        }
+        if (table === 'Message_v2') {
+          const message = { 
+            id: uuidv4(), 
+            createdAt: new Date(),
+            ...data 
+          };
+          mockData.messages.push(message);
+          return Promise.resolve(message);
+        }
+        if (table === 'Vote_v2') {
+          const vote = { ...data };
+          mockData.votes.push(vote);
+          return Promise.resolve(vote);
+        }
+        return Promise.resolve();
+      }
+    }),
+    update: (table: string) => ({
+      set: (data: any) => ({
+        where: (condition: any) => {
+          if (table === 'Chat') {
+            const chatId = condition?.id?.value;
+            const chat = mockData.chats.find(c => c.id === chatId);
+            if (chat) {
+              Object.assign(chat, data);
+            }
+          }
+          return Promise.resolve();
+        }
+      })
+    }),
+    delete: (table: string) => ({
+      where: (condition: any) => {
+        if (table === 'Chat') {
+          const chatId = condition?.id?.value;
+          mockData.chats = mockData.chats.filter(c => c.id !== chatId);
+          mockData.messages = mockData.messages.filter(m => m.chatId !== chatId);
+          mockData.votes = mockData.votes.filter(v => v.chatId !== chatId);
+        }
+        return Promise.resolve();
+      }
+    })
+  };
+  db = mockDb as any;
+} else {
+  // In production, use real database
+  if (!process.env.POSTGRES_URL) {
+    throw new Error('POSTGRES_URL is not defined');
+  }
+  const client = postgres(process.env.POSTGRES_URL);
+  db = drizzle(client);
+}
+
+// Database query functions
 export async function getUser(email: string): Promise<Array<User>> {
   try {
-    return await db.select().from(user).where(eq(user.email, email));
+    const users = await db.select().from(user).where(eq(user.email, email));
+    if (process.env.NODE_ENV === 'development') {
+      // In development, ensure we have a default user
+      if (users.length === 0 && email === 'dev@example.com') {
+        const defaultUser = {
+          id: 'dev-user-id',
+          email: 'dev@example.com',
+          password: hashSync('password', genSaltSync(10)),
+        };
+        return [defaultUser as User];
+      }
+    }
+    return users;
   } catch (error) {
     console.error('Failed to get user from database');
     throw error;

@@ -1,3 +1,22 @@
+/**
+ * ** IMAGE ARTIFACT CLIENT **
+ * 
+ * This module defines the image artifact type and its client-side functionality.
+ * 
+ * Key functionalities:
+ * - Configures image artifact rendering and behaviors
+ * - Handles image display and presentation
+ * - Provides version navigation through generation history
+ * - Implements clipboard operations for image copying
+ * - Processes image data streams from the server
+ * - Manages image visibility and display states
+ * - Integrates with the artifact system for consistent behavior
+ * 
+ * This artifact type enables AI-generated image creation and viewing,
+ * allowing users to generate and interact with images directly
+ * within the chat interface.
+ */
+
 import { Artifact } from '@/components/create-artifact';
 import { CopyIcon, RedoIcon, UndoIcon } from '@/components/icons';
 import { ImageEditor } from '@/components/image-editor';

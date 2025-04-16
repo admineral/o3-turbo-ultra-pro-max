@@ -1,3 +1,22 @@
+/**
+ * ** CODE EDITOR COMPONENT **
+ * 
+ * This component provides a rich code editing environment.
+ * 
+ * Key functionalities:
+ * - Implements CodeMirror editor with Python language support
+ * - Provides syntax highlighting and code formatting
+ * - Handles real-time content updates during streaming
+ * - Maintains editor state and selection across updates
+ * - Optimizes rendering with memoization for performance
+ * - Synchronizes content between model and UI representation
+ * - Supports both editing and read-only modes
+ * 
+ * This component powers the code artifact editing experience,
+ * enabling users to write, edit, and review code with proper
+ * syntax highlighting and editor features.
+ */
+
 'use client';
 
 import { EditorView } from '@codemirror/view';

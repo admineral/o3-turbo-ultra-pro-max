@@ -1,3 +1,22 @@
+/**
+ * ** IMAGE ARTIFACT SERVER **
+ * 
+ * This module implements server-side functionality for image artifacts.
+ * 
+ * Key functionalities:
+ * - Handles image generation using AI image models
+ * - Processes document creation with image content
+ * - Integrates with AI providers for image generation
+ * - Streams generated image data to the client
+ * - Handles base64 encoding of image data
+ * - Updates existing images based on text descriptions
+ * - Registers the image document handler with the artifact system
+ * 
+ * This server-side handler enables AI-powered image generation,
+ * working in tandem with the client-side rendering functionality
+ * to provide seamless image creation capabilities.
+ */
+
 import { myProvider } from '@/lib/ai/providers';
 import { createDocumentHandler } from '@/lib/artifacts/server';
 import { experimental_generateImage } from 'ai';

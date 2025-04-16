@@ -1,3 +1,22 @@
+/**
+ * ** MARKDOWN COMPONENT **
+ * 
+ * This component renders markdown content with enhanced formatting and features.
+ * 
+ * Key functionalities:
+ * - Converts markdown text to formatted HTML
+ * - Implements syntax highlighting for code blocks
+ * - Renders tables, links, and other markdown elements
+ * - Handles custom components within markdown content
+ * - Supports math equations and diagrams
+ * - Applies consistent styling to rendered content
+ * - Ensures proper escaping of potentially unsafe content
+ * 
+ * This component is used throughout the application to display
+ * AI-generated and user-created content with rich formatting,
+ * making text more readable and interactive.
+ */
+
 import Link from 'next/link';
 import React, { memo } from 'react';
 import ReactMarkdown, { type Components } from 'react-markdown';

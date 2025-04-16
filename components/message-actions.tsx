@@ -1,3 +1,22 @@
+/**
+ * ** MESSAGE ACTIONS COMPONENT **
+ * 
+ * This component provides interactive controls for message manipulation.
+ * 
+ * Key functionalities:
+ * - Displays action buttons for message management
+ * - Supports message editing and regeneration
+ * - Implements voting (thumbs up/down) for feedback
+ * - Handles context menu for additional actions
+ * - Controls action visibility based on message state
+ * - Adapts available actions to message type (user/assistant)
+ * - Provides visual feedback for action states
+ * 
+ * This component enhances the chat experience by giving users
+ * control over message content and providing mechanisms for
+ * giving feedback on AI responses.
+ */
+
 import type { Message } from 'ai';
 import { useSWRConfig } from 'swr';
 import { useCopyToClipboard } from 'usehooks-ts';

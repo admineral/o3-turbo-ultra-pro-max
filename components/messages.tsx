@@ -1,3 +1,21 @@
+/**
+ * ** MESSAGES COMPONENT **
+ * 
+ * This component handles the display of chat message history.
+ * 
+ * Key functionalities:
+ * - Renders the chat message thread with proper ordering
+ * - Manages the scrolling behavior of the message container
+ * - Handles empty state display when no messages exist
+ * - Displays loading indicators during message generation
+ * - Adapts layout responsively based on artifact visibility
+ * - Supports read-only mode for shared conversations
+ * - Passes vote data to individual message components
+ * 
+ * This component serves as a container for individual Message components,
+ * managing their collective display and interaction within the chat interface.
+ */
+
 import { UIMessage } from 'ai';
 import { PreviewMessage, ThinkingMessage } from './message';
 import { useScrollToBottom } from './use-scroll-to-bottom';

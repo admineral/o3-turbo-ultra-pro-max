@@ -1,3 +1,22 @@
+/**
+ * ** MULTIMODAL INPUT COMPONENT **
+ * 
+ * This component provides the chat input interface with support for multiple content types.
+ * 
+ * Key functionalities:
+ * - Handles text input with auto-resizing textarea
+ * - Supports file uploads with drag-and-drop functionality
+ * - Manages image attachments with preview and removal
+ * - Provides toolbar with formatting and command options
+ * - Shows loading/generating state during AI responses
+ * - Implements keyboard shortcuts for submission
+ * - Handles input focus and accessibility features
+ * 
+ * This component enables rich interaction beyond text-only input,
+ * allowing users to seamlessly include images and other content types
+ * when communicating with the AI assistant.
+ */
+
 'use client';
 
 import type { Attachment, Message, UIMessage } from 'ai';

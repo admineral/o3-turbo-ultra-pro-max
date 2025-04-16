@@ -1,3 +1,22 @@
+/**
+ * ** SHEET ARTIFACT SERVER **
+ * 
+ * This module implements server-side functionality for spreadsheet artifacts.
+ * 
+ * Key functionalities:
+ * - Handles spreadsheet generation using AI models
+ * - Processes document creation with CSV content
+ * - Integrates with AI providers for data generation
+ * - Streams generated CSV data to the client
+ * - Updates existing sheets based on user descriptions
+ * - Uses specialized prompts for tabular data generation
+ * - Registers the sheet document handler with the artifact system
+ * 
+ * This server-side handler enables AI-powered spreadsheet generation,
+ * working in tandem with the client-side rendering functionality
+ * to provide seamless tabular data creation capabilities.
+ */
+
 import { myProvider } from '@/lib/ai/providers';
 import { sheetPrompt, updateDocumentPrompt } from '@/lib/ai/prompts';
 import { createDocumentHandler } from '@/lib/artifacts/server';

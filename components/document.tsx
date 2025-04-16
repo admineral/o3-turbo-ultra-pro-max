@@ -1,3 +1,25 @@
+/**
+ * ** DOCUMENT COMPONENT **
+ * 
+ * This component provides document creation and management functionality.
+ * 
+ * Key functionalities:
+ * - Renders different document types (text, code, spreadsheet, image)
+ * - Handles document creation with appropriate editors
+ * - Manages document state and content updates
+ * - Provides version history and navigation
+ * - Implements specialized editors for different content types
+ * - Saves document changes to the database
+ * - Supports exporting and sharing documents
+ * 
+ * This component serves as a container for artifact creation and editing,
+ * enabling AI-assisted document generation and collaborative editing
+ * of various content types within the chat interface.
+ */
+
+'use client';
+
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { memo } from 'react';
 
 import type { ArtifactKind } from './artifact';

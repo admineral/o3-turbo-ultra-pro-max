@@ -1,3 +1,13 @@
+/**
+ * *** CHAT API ***
+ * Handles chat functionality including:
+ * - POST: Processes incoming chat messages, saves them to the database, and streams AI responses
+ * - DELETE: Removes chats from the database when requested by the owner
+ * 
+ * Uses authentication to verify user access and supports multiple chat models
+ * with various AI tools like weather, document creation/updating, and suggestions.
+ */
+
 import {
   UIMessage,
   appendResponseMessages,
@@ -39,29 +49,36 @@ export async function POST(request: Request) {
       messages: Array<UIMessage>;
       selectedChatModel: string;
     } = await request.json();
-
+    console.log('POST /api/chat called with:', { id, messagesCount: messages.length, selectedChatModel });
     const session = await auth();
-
+    console.log('Session from auth():', session);
     if (!session || !session.user || !session.user.id) {
+      console.log('Unauthorized access attempt to POST /api/chat');
       return new Response('Unauthorized', { status: 401 });
     }
+    console.log('User authenticated for POST /api/chat:', session.user.id);
 
     const userMessage = getMostRecentUserMessage(messages);
-
+    console.log('Most recent user message:', userMessage);
     if (!userMessage) {
+      console.log('No user message found in POST /api/chat');
       return new Response('No user message found', { status: 400 });
     }
 
     const chat = await getChatById({ id });
-
+    console.log('Chat fetched for id:', id, chat);
     if (!chat) {
+      console.log('No existing chat, generating title');
       const title = await generateTitleFromUserMessage({
         message: userMessage,
       });
 
       await saveChat({ id, userId: session.user.id, title });
+      console.log('saveChat successful for chat id:', id);
     } else {
+      console.log('Existing chat belongs to user:', chat.userId);
       if (chat.userId !== session.user.id) {
+        console.log('Unauthorized: chat.userId does not match session.user.id');
         return new Response('Unauthorized', { status: 401 });
       }
     }
@@ -78,9 +95,11 @@ export async function POST(request: Request) {
         },
       ],
     });
+    console.log('saveMessages (user message) successful for message id:', userMessage.id);
 
     return createDataStreamResponse({
       execute: (dataStream) => {
+        console.log('Stream execution started for chat id:', id);
         const result = streamText({
           model: myProvider.languageModel(selectedChatModel),
           system: systemPrompt({ selectedChatModel }),
@@ -107,6 +126,7 @@ export async function POST(request: Request) {
             }),
           },
           onFinish: async ({ response }) => {
+            console.log('Stream finished with response messages count:', response.messages.length);
             if (session.user?.id) {
               try {
                 const assistantId = getTrailingMessageId({
@@ -154,11 +174,13 @@ export async function POST(request: Request) {
           sendReasoning: true,
         });
       },
-      onError: () => {
+      onError: (error) => {
+        console.error('Error in dataStreamResponse:', error);
         return 'Oops, an error occured!';
       },
     });
   } catch (error) {
+    console.error('Unexpected error in POST /api/chat:', error);
     return new Response('An error occurred while processing your request!', {
       status: 404,
     });
@@ -168,30 +190,32 @@ export async function POST(request: Request) {
 export async function DELETE(request: Request) {
   const { searchParams } = new URL(request.url);
   const id = searchParams.get('id');
-
+  console.log('DELETE /api/chat called with id:', id);
   if (!id) {
+    console.log('DELETE /api/chat missing id parameter');
     return new Response('Not Found', { status: 404 });
   }
-
   const session = await auth();
-
+  console.log('Session for DELETE /api/chat:', session);
   if (!session || !session.user) {
+    console.log('Unauthorized DELETE attempt to /api/chat with id:', id);
     return new Response('Unauthorized', { status: 401 });
   }
-
+  console.log('User authenticated for DELETE:', session.user.id);
   try {
+    console.log('Fetching chat for deletion with id:', id);
     const chat = await getChatById({ id });
-
+    console.log('Fetched chat:', chat);
     if (chat.userId !== session.user.id) {
+      console.log('Unauthorized: chat.userId does not match session.user.id for DELETE');
       return new Response('Unauthorized', { status: 401 });
     }
-
+    console.log('Deleting chat with id:', id);
     await deleteChatById({ id });
-
+    console.log('deleteChatById successful for id:', id);
     return new Response('Chat deleted', { status: 200 });
   } catch (error) {
-    return new Response('An error occurred while processing your request!', {
-      status: 500,
-    });
+    console.error('Error in DELETE /api/chat for id', id, error);
+    return new Response('An error occurred while processing your request!', { status: 500 });
   }
 }

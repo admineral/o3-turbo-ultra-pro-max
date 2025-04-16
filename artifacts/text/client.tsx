@@ -1,3 +1,22 @@
+/**
+ * ** TEXT ARTIFACT CLIENT **
+ * 
+ * This module defines the text artifact type and its client-side functionality.
+ * 
+ * Key functionalities:
+ * - Configures text document artifact rendering and behaviors
+ * - Handles text content display and editing
+ * - Manages document suggestions and improvements
+ * - Provides version navigation and diff viewing
+ * - Implements clipboard operations for text copying
+ * - Processes text data streams from the server
+ * - Offers toolbar options for content polishing and enhancement
+ * 
+ * This artifact type enables rich text document creation and editing,
+ * allowing users to collaborate with AI on writing tasks directly
+ * within the chat interface with real-time suggestions.
+ */
+
 import { Artifact } from '@/components/create-artifact';
 import { DiffView } from '@/components/diffview';
 import { DocumentSkeleton } from '@/components/document-skeleton';

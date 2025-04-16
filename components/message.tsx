@@ -1,3 +1,21 @@
+/**
+ * ** MESSAGE COMPONENT **
+ * 
+ * This component renders individual chat messages with various formats and interactions.
+ * 
+ * Key functionalities:
+ * - Displays messages with proper styling based on role (user/assistant)
+ * - Renders markdown content with syntax highlighting for code
+ * - Supports multimodal content including images and other attachments
+ * - Provides user actions like editing, voting, and regeneration
+ * - Shows AI reasoning when available (for transparency)
+ * - Displays interactive artifacts created during the conversation
+ * - Handles preview/thinking states during message generation
+ * 
+ * This component is responsible for the visual representation and interactivity
+ * of each message in the chat, including special states like loading/thinking.
+ */
+
 'use client';
 
 import type { UIMessage } from 'ai';

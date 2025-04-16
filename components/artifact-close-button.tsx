@@ -1,3 +1,22 @@
+/**
+ * ** ARTIFACT CLOSE BUTTON COMPONENT **
+ * 
+ * This component provides the functionality to close the artifact sidebar.
+ * 
+ * Key functionalities:
+ * - Handles artifact visibility toggling
+ * - Resets artifact state when closing
+ * - Preserves artifact state during streaming operations
+ * - Provides consistent closing behavior across artifact types
+ * - Integrates with the global artifact context
+ * - Implements optimized rendering with memoization
+ * - Offers clear visual indicator for closing action
+ * 
+ * This component provides a simple but essential user control for
+ * managing the workspace layout by allowing users to hide the
+ * artifact sidebar when not needed.
+ */
+
 import { memo } from 'react';
 import { CrossIcon } from './icons';
 import { Button } from './ui/button';

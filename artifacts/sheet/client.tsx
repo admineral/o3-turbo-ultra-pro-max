@@ -1,3 +1,22 @@
+/**
+ * ** SHEET ARTIFACT CLIENT **
+ * 
+ * This module defines the spreadsheet artifact type and its client-side functionality.
+ * 
+ * Key functionalities:
+ * - Configures spreadsheet artifact rendering and behaviors
+ * - Handles tabular data display and editing
+ * - Provides version navigation through edit history
+ * - Implements clipboard operations for CSV export
+ * - Processes sheet data streams from the server
+ * - Manages sheet visibility and display states
+ * - Offers toolbar options for data formatting and analysis
+ * 
+ * This artifact type enables spreadsheet creation and manipulation,
+ * allowing users to work with tabular data directly within the chat interface
+ * and perform data analysis tasks with AI assistance.
+ */
+
 import { Artifact } from '@/components/create-artifact';
 import {
   CopyIcon,

@@ -1,3 +1,22 @@
+/**
+ * ** DIFF VIEW COMPONENT **
+ * 
+ * This component visualizes differences between document versions.
+ * 
+ * Key functionalities:
+ * - Renders differences between old and new document content
+ * - Highlights added, removed, and unchanged content with appropriate styling
+ * - Implements ProseMirror for robust document comparison and rendering
+ * - Processes markdown content for structured diffing
+ * - Uses custom schema with specialized mark types for difference visualization
+ * - Supports rich text content with proper formatting
+ * - Provides a read-only interface for reviewing changes
+ * 
+ * This component enables users to review the evolution of artifacts
+ * between versions, clearly visualizing what content was added, removed,
+ * or remained unchanged between iterations.
+ */
+
 import OrderedMap from 'orderedmap';
 import {
   Schema,

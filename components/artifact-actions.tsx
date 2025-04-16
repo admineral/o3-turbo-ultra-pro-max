@@ -1,3 +1,22 @@
+/**
+ * ** ARTIFACT ACTIONS COMPONENT **
+ * 
+ * This component provides action buttons for artifact manipulation.
+ * 
+ * Key functionalities:
+ * - Renders context-specific actions based on artifact type
+ * - Handles version navigation through history
+ * - Provides export, copy, and sharing capabilities
+ * - Manages action states (disabled, loading)
+ * - Displays tooltips for action descriptions
+ * - Adapts available actions based on artifact state
+ * - Integrates with the global artifact context
+ * 
+ * This component serves as the control panel for artifact operations,
+ * allowing users to interact with and manipulate content generated
+ * during chat sessions.
+ */
+
 import { Button } from './ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from './ui/tooltip';
 import { artifactDefinitions, UIArtifact } from './artifact';

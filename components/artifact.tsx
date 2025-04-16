@@ -1,3 +1,23 @@
+/**
+ * ** ARTIFACT COMPONENT **
+ * 
+ * This component provides a sidebar for displaying and interacting with AI-generated artifacts.
+ * 
+ * Key functionalities:
+ * - Renders a resizable sidebar for artifact display
+ * - Manages different artifact types (documents, code, sheets, images)
+ * - Handles artifact creation through specialized editors
+ * - Provides actions for saving, exporting, and sharing artifacts
+ * - Displays version history and allows version selection
+ * - Offers suggestions related to the current artifact
+ * - Maintains artifact state with chat context
+ * 
+ * This component serves as a workspace for collaborative content creation,
+ * allowing users to view, edit, and manage content generated during chat interactions.
+ */
+
+'use client';
+
 import type { Attachment, UIMessage } from 'ai';
 import { formatDistance } from 'date-fns';
 import { AnimatePresence, motion } from 'framer-motion';

@@ -1,3 +1,21 @@
+/**
+ * ** AUTHENTICATION ACTIONS **
+ * 
+ * This file contains server-side actions for authentication using Next.js server actions.
+ * 
+ * Key functionalities:
+ * - login: Validates user credentials and initiates authenticated sessions
+ * - register: Creates new user accounts and automatically logs in new users
+ * - Form validation using Zod schema for email and password
+ * - Error handling for various authentication scenarios
+ * - Type-safe state management for authentication actions
+ * - Integration with NextAuth's signIn function
+ * 
+ * These server actions handle the form submission logic for authentication flows,
+ * providing structured responses that client components can use to update UI state
+ * while keeping sensitive operations secure on the server.
+ */
+
 'use server';
 
 import { z } from 'zod';

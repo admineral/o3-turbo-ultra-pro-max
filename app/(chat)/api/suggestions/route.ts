@@ -1,3 +1,12 @@
+/**
+ * *** SUGGESTIONS API ***
+ * Manages AI-generated suggestions related to documents:
+ * - GET: Retrieves suggestions for a specific document ID
+ * 
+ * Enforces authentication and authorization to ensure
+ * suggestions are only accessible by the document owner.
+ */
+
 import { auth } from '@/app/(auth)/auth';
 import { getSuggestionsByDocumentId } from '@/lib/db/queries';
 

@@ -1,3 +1,22 @@
+/**
+ * ** CONSOLE COMPONENT **
+ * 
+ * This component provides a terminal-like interface for code execution outputs.
+ * 
+ * Key functionalities:
+ * - Displays execution results from code artifacts
+ * - Renders both text and image outputs from code execution
+ * - Supports real-time streaming of execution results
+ * - Provides resizable interface with drag-to-resize functionality
+ * - Shows execution progress with loading indicators
+ * - Handles various execution states (in_progress, loading_packages, completed, failed)
+ * - Implements auto-scrolling to latest output content
+ * 
+ * This component enhances the code artifact experience by providing a rich
+ * execution environment directly within the chat interface, enabling users
+ * to see code outputs including text, errors, and visualizations like plots.
+ */
+
 import { TerminalWindowIcon, LoaderIcon, CrossSmallIcon } from './icons';
 import { Button } from './ui/button';
 import {

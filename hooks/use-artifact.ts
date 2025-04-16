@@ -1,3 +1,22 @@
+/**
+ * ** ARTIFACT GLOBAL CONTEXT HOOK **
+ * 
+ * This hook provides global state management for artifacts (documents, code, etc.) in the application.
+ * 
+ * Key functionalities:
+ * - Implements a global state store using SWR cache
+ * - Provides access to artifact data across components without prop drilling
+ * - Manages artifact visibility, content, and metadata
+ * - Offers both selector pattern and direct state access
+ * - Supports real-time updates to artifact state
+ * - Maintains consistent initial state with fallback data
+ * - Synchronizes artifact state between sidebar and main chat interface
+ * 
+ * This hook acts as a lightweight global state management solution,
+ * leveraging SWR's caching capabilities to provide a Redux-like experience
+ * without requiring additional dependencies.
+ */
+
 'use client';
 
 import useSWR from 'swr';

@@ -1,3 +1,22 @@
+/**
+ * ** CODE ARTIFACT CLIENT **
+ * 
+ * This module defines the code artifact type and its client-side functionality.
+ * 
+ * Key functionalities:
+ * - Configures code artifact rendering and behaviors
+ * - Implements Python code execution in the browser using Pyodide
+ * - Handles output capturing and display from code execution
+ * - Supports specialized output handling for matplotlib visualizations
+ * - Provides actions for code execution, versioning, and copying
+ * - Implements toolbar items for enhancing code with comments and logs
+ * - Manages state for code outputs and execution results
+ * 
+ * This artifact type enables interactive code creation and execution,
+ * allowing users to write, run, and visualize Python code directly
+ * within the chat interface.
+ */
+
 import { Artifact } from '@/components/create-artifact';
 import { CodeEditor } from '@/components/code-editor';
 import {

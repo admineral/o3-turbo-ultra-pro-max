@@ -1,3 +1,22 @@
+/**
+ * ** ARTIFACTS SERVER UTILITIES **
+ * 
+ * This module provides the core server-side infrastructure for artifacts.
+ * 
+ * Key functionalities:
+ * - Defines document handler interfaces and types
+ * - Implements factory pattern for document handler creation
+ * - Handles document creation and update flows
+ * - Manages document persistence to database
+ * - Registers artifact types in a central registry
+ * - Provides common utilities for all artifact types
+ * - Coordinates authentication and permission checks
+ * 
+ * This central utility enables a consistent pattern for all artifact types,
+ * ensuring proper handling of creation, updates, streaming, and persistence
+ * while allowing for type-specific implementations.
+ */
+
 import { codeDocumentHandler } from '@/artifacts/code/server';
 import { imageDocumentHandler } from '@/artifacts/image/server';
 import { sheetDocumentHandler } from '@/artifacts/sheet/server';

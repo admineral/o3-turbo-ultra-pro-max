@@ -1,3 +1,21 @@
+/**
+ * ** AUTHENTICATION CONFIGURATION **
+ * 
+ * This file defines the configuration settings for NextAuth.js authentication.
+ * 
+ * Key functionalities:
+ * - Specifies custom login and registration pages
+ * - Implements route protection through authorized callback
+ * - Handles redirection logic based on authentication state
+ * - Controls access to protected and public routes
+ * - Manages navigation flow for authenticated/unauthenticated users
+ * - Separates configuration from implementation for environment compatibility
+ * 
+ * This configuration file doesn't include provider implementation details
+ * to remain compatible with non-Node.js environments like Edge runtime.
+ * Actual provider setup happens in auth.ts where Node.js dependencies can be used.
+ */
+
 import type { NextAuthConfig } from 'next-auth';
 
 export const authConfig = {
