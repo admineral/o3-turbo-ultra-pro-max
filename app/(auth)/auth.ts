@@ -40,8 +40,8 @@ export const {
     Credentials({
       credentials: {},
       async authorize({ email, password }: any) {
-        if (process.env.NODE_ENV === 'development' || !process.env.POSTGRES_URL) {
-          // In development mode or when no database is available, always return a valid user
+        if (!process.env.POSTGRES_URL) {
+          // If no database, always return a valid user
           return {
             id: 'dev-user-id',
             email: 'dev@example.com',
