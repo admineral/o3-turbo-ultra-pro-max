@@ -22,155 +22,159 @@ import { ArtifactKind } from '@/components/artifact';
 // Initialize database connection
 let db: ReturnType<typeof drizzle>;
 
-if (process.env.NODE_ENV === 'development') {
-  // In development, use mock database
-  const mockData = {
-    users: [] as Array<{ id: string; email: string; password: string }>,
-    chats: [] as Array<{ id: string; userId: string; title: string; createdAt: Date; visibility: string }>,
-    messages: [] as Array<DBMessage>,
-    votes: [] as Array<{ chatId: string; messageId: string; isUpvoted: boolean }>,
-  };
+// Create mock database for development or when POSTGRES_URL is missing
+const mockData = {
+  users: [] as Array<{ id: string; email: string; password: string }>,
+  chats: [] as Array<{ id: string; userId: string; title: string; createdAt: Date; visibility: string }>,
+  messages: [] as Array<DBMessage>,
+  votes: [] as Array<{ chatId: string; messageId: string; isUpvoted: boolean }>,
+};
 
-  // Create a default user for development
-  const defaultUser = {
-    id: 'dev-user-id',
-    email: 'dev@example.com',
-    password: hashSync('password', genSaltSync(10)),
-  };
-  mockData.users.push(defaultUser);
+// Create a default user for development
+const defaultUser = {
+  id: 'dev-user-id',
+  email: 'dev@example.com',
+  password: hashSync('password', genSaltSync(10)),
+};
+mockData.users.push(defaultUser);
 
-  const mockDb = {
-    select: () => ({
-      from: (table: string) => ({
-        where: (condition: any) => {
-          let results: any[] = [];
-          if (table === 'User') {
-            const email = condition?.email?.value;
-            const user = mockData.users.find(u => u.email === email);
-            if (user) {
-              results = [{
-                id: user.id,
-                email: user.email,
-                password: user.password
-              }];
-            }
-          } else if (table === 'Chat') {
-            if (condition?.id?.value) {
-              const chatId = condition.id.value;
-              results = mockData.chats.filter(chat => chat.id === chatId);
-            } else if (condition?.userId?.value) {
-              const userId = condition.userId.value;
-              results = mockData.chats.filter(chat => chat.userId === userId);
-            } else {
-              results = mockData.chats;
-            }
-          } else if (table === 'Message_v2') {
-            if (condition?.chatId?.value) {
-              const chatId = condition.chatId.value;
-              results = mockData.messages.filter(msg => msg.chatId === chatId);
-            } else if (condition?.id?.value) {
-              const messageId = condition.id.value;
-              results = mockData.messages.filter(msg => msg.id === messageId);
-            } else {
-              results = mockData.messages;
-            }
-          } else if (table === 'Vote_v2') {
-            if (condition?.chatId?.value) {
-              const chatId = condition.chatId.value;
-              results = mockData.votes.filter(vote => vote.chatId === chatId);
-            } else if (condition?.messageId?.value) {
-              const messageId = condition.messageId.value;
-              results = mockData.votes.filter(vote => vote.messageId === messageId);
-            } else {
-              results = mockData.votes;
-            }
-          }
-          return {
-            orderBy: (order: any) => {
-              if (order?.createdAt?.direction === 'desc') {
-                results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
-              } else if (order?.createdAt?.direction === 'asc') {
-                results.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
-              }
-              return Promise.resolve(results);
-            },
-            then: (resolve: any) => resolve(results)
-          };
-        }
-      })
-    }),
-    insert: (table: string) => ({
-      values: (data: any) => {
+const mockDb = {
+  select: () => ({
+    from: (table: string) => ({
+      where: (condition: any) => {
+        let results: any[] = [];
         if (table === 'User') {
-          const user = { 
-            id: uuidv4(), 
-            email: data.email,
-            password: hashSync(data.password, genSaltSync(10))
-          };
-          mockData.users.push(user);
-          return Promise.resolve(user);
-        }
-        if (table === 'Chat') {
-          const chat = { 
-            id: uuidv4(), 
-            createdAt: new Date(),
-            visibility: 'private',
-            ...data 
-          };
-          mockData.chats.push(chat);
-          return Promise.resolve(chat);
-        }
-        if (table === 'Message_v2') {
-          const message = { 
-            id: uuidv4(), 
-            createdAt: new Date(),
-            ...data 
-          };
-          mockData.messages.push(message);
-          return Promise.resolve(message);
-        }
-        if (table === 'Vote_v2') {
-          const vote = { ...data };
-          mockData.votes.push(vote);
-          return Promise.resolve(vote);
-        }
-        return Promise.resolve();
-      }
-    }),
-    update: (table: string) => ({
-      set: (data: any) => ({
-        where: (condition: any) => {
-          if (table === 'Chat') {
-            const chatId = condition?.id?.value;
-            const chat = mockData.chats.find(c => c.id === chatId);
-            if (chat) {
-              Object.assign(chat, data);
-            }
+          const email = condition?.email?.value;
+          const user = mockData.users.find(u => u.email === email);
+          if (user) {
+            results = [{
+              id: user.id,
+              email: user.email,
+              password: user.password
+            }];
           }
-          return Promise.resolve();
+        } else if (table === 'Chat') {
+          if (condition?.id?.value) {
+            const chatId = condition.id.value;
+            results = mockData.chats.filter(chat => chat.id === chatId);
+          } else if (condition?.userId?.value) {
+            const userId = condition.userId.value;
+            results = mockData.chats.filter(chat => chat.userId === userId);
+          } else {
+            results = mockData.chats;
+          }
+        } else if (table === 'Message_v2') {
+          if (condition?.chatId?.value) {
+            const chatId = condition.chatId.value;
+            results = mockData.messages.filter(msg => msg.chatId === chatId);
+          } else if (condition?.id?.value) {
+            const messageId = condition.id.value;
+            results = mockData.messages.filter(msg => msg.id === messageId);
+          } else {
+            results = mockData.messages;
+          }
+        } else if (table === 'Vote_v2') {
+          if (condition?.chatId?.value) {
+            const chatId = condition.chatId.value;
+            results = mockData.votes.filter(vote => vote.chatId === chatId);
+          } else if (condition?.messageId?.value) {
+            const messageId = condition.messageId.value;
+            results = mockData.votes.filter(vote => vote.messageId === messageId);
+          } else {
+            results = mockData.votes;
+          }
         }
-      })
-    }),
-    delete: (table: string) => ({
+        return {
+          orderBy: (order: any) => {
+            if (order?.createdAt?.direction === 'desc') {
+              results.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+            } else if (order?.createdAt?.direction === 'asc') {
+              results.sort((a, b) => a.createdAt.getTime() - b.createdAt.getTime());
+            }
+            return Promise.resolve(results);
+          },
+          then: (resolve: any) => resolve(results)
+        };
+      }
+    })
+  }),
+  insert: (table: string) => ({
+    values: (data: any) => {
+      if (table === 'User') {
+        const user = { 
+          id: uuidv4(), 
+          email: data.email,
+          password: hashSync(data.password, genSaltSync(10))
+        };
+        mockData.users.push(user);
+        return Promise.resolve(user);
+      }
+      if (table === 'Chat') {
+        const chat = { 
+          id: uuidv4(), 
+          createdAt: new Date(),
+          visibility: 'private',
+          ...data 
+        };
+        mockData.chats.push(chat);
+        return Promise.resolve(chat);
+      }
+      if (table === 'Message_v2') {
+        const message = { 
+          id: uuidv4(), 
+          createdAt: new Date(),
+          ...data 
+        };
+        mockData.messages.push(message);
+        return Promise.resolve(message);
+      }
+      if (table === 'Vote_v2') {
+        const vote = { ...data };
+        mockData.votes.push(vote);
+        return Promise.resolve(vote);
+      }
+      return Promise.resolve();
+    }
+  }),
+  update: (table: string) => ({
+    set: (data: any) => ({
       where: (condition: any) => {
         if (table === 'Chat') {
           const chatId = condition?.id?.value;
-          mockData.chats = mockData.chats.filter(c => c.id !== chatId);
-          mockData.messages = mockData.messages.filter(m => m.chatId !== chatId);
-          mockData.votes = mockData.votes.filter(v => v.chatId !== chatId);
+          const chat = mockData.chats.find(c => c.id === chatId);
+          if (chat) {
+            Object.assign(chat, data);
+          }
         }
         return Promise.resolve();
       }
     })
-  };
+  }),
+  delete: (table: string) => ({
+    where: (condition: any) => {
+      if (table === 'Chat') {
+        const chatId = condition?.id?.value;
+        mockData.chats = mockData.chats.filter(c => c.id !== chatId);
+        mockData.messages = mockData.messages.filter(m => m.chatId !== chatId);
+        mockData.votes = mockData.votes.filter(v => v.chatId !== chatId);
+      }
+      return Promise.resolve();
+    }
+  })
+};
+
+if (process.env.NODE_ENV === 'development') {
+  // In development, use mock database
   db = mockDb as any;
 } else {
   // In production, use real database
   if (!process.env.POSTGRES_URL) {
-    throw new Error('POSTGRES_URL is not defined');
+    console.warn('POSTGRES_URL is not defined. Using development mode database.');
+    db = mockDb as any;
+  } else {
+    const client = postgres(process.env.POSTGRES_URL);
+    db = drizzle(client);
   }
-  const client = postgres(process.env.POSTGRES_URL);
-  db = drizzle(client);
 }
 
 // Database query functions
